@@ -33,6 +33,6 @@ Optional
  [] Public user profiles show their information, posts and comments
 
 
-Walkthrough
+### Walkthrough
 
-Video Walkthrough
+![Video Walkthrough](blogger.gif)
