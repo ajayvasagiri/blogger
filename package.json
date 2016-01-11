@@ -1,0 +1,12 @@
+{
+  "name": "blogger-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "start": "nodemon --exec babel-node -- --stage 1 --optional strict -- index.js",
+     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
