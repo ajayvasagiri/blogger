@@ -9,10 +9,8 @@ let PostSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    // upvotes: {
-    //     type: Number,
-    //     default: 0
-    // },
+
+
     image: {
         data: Buffer,
         contentType: String
@@ -35,9 +33,5 @@ let PostSchema = mongoose.Schema({
     }
 })
 
-// PostSchema.methods.upvote = async function() {
-//   this.upvotes += 1
-//   return this.save()
-// }
 
 module.exports = mongoose.model('Post', PostSchema)

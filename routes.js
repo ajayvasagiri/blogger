@@ -1,9 +1,10 @@
 let isLoggedIn = require('./middleware/isLoggedIn')
 let User = require('./models/user')
-let multiparty = require('multiparty')
 let then = require('express-then')
 let Post = require('./models/post')
 let Comment = require('./models/comment')
+let multiparty = require('multiparty')
+
 let fs = require('fs')
 let DataUri = require('datauri')
 
@@ -26,9 +27,6 @@ module.exports = (app) => {
         res.render('index.ejs')
     })
 
-    /*
-     * Routes for /login
-     */
 
     app.get('/login', function(req, res) {
         if (req.isAuthenticated())
@@ -46,9 +44,6 @@ module.exports = (app) => {
         failureFlash: true
     }))
 
-    /*
-     * Routes for /signup
-     */
 
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', {
@@ -62,9 +57,6 @@ module.exports = (app) => {
         failureFlash: true
     }))
 
-    /*
-     * Routes for /profile
-     */
 
     app.get('/profile', isLoggedIn, then(async(req, res) => {
         let posts = await Post.promise.find({user: req.user})
@@ -82,9 +74,6 @@ module.exports = (app) => {
         })
     }))
 
-    /*
-     * Routes for /post/
-     */
 
     app.get('/post/', isLoggedIn, then(async(req, res) => {
         let postId = req.params.postId
@@ -151,7 +140,6 @@ module.exports = (app) => {
             return
         }
 
-        // Edit Post
 
         let post = await Post.promise.findById(postId)
         if (!post) res.send(404, 'Not Found')
@@ -192,9 +180,6 @@ module.exports = (app) => {
         res.render('listblog.ejs', {users})
     }))
 
-    /*
-     * Routes for /blog
-     */
 
     app.get('/blog/:blogId?', then(async(req, res) => {
         let blogTitle = req.params.blogId
@@ -207,7 +192,6 @@ module.exports = (app) => {
             })
         }
 
-        // now get all the posts created by this user
         let posts = await Post.promise.find({user})
         posts = await Promise.all(posts.map(post => {
             if (post.image) {
@@ -218,10 +202,6 @@ module.exports = (app) => {
 
         res.render('blog.ejs', {blogTitle, posts})
     }))
-
-    /*
-     *  Routes for /comment
-     */
 
 
     app.post('/addComment/:postId', isLoggedIn, then(async(req, res) => {
@@ -241,9 +221,8 @@ console.log('Comment :: ', req.body.comment)
         res.redirect(req.get('referer'))
     }))
 
-    /*
-     *Logout
-     */
+
+
     app.get('/logout', function(req, res) {
         req.logout()
         res.redirect('/')

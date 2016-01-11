@@ -41,7 +41,6 @@ UserSchema.methods.validatePassword = async function (password) {
   return hash.toString('hex') === this.password
 }
 
-// Mongoose hooks don't pass callback last, so don't work with nodeifyit
 UserSchema.pre('save', function(callback) {
     nodeify(async() => 
     {

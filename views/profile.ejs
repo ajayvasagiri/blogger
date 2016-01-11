@@ -55,19 +55,7 @@
                     <% } %>
                 </ul>
 
-                <h4><span class="fa fa-laptop"></span> Comments</h4>
 
-                 <ul>
-                    <% for(var i=0; i<posts.length; i++) {
-                        for(var j=0; j<posts[i].comments.length;j++){ %>
-                       <li>
-                            <div class="lead"><%= posts[i].comments[j].content %> </div><em> Added by <%= posts[i].comments[j].username %> on <%= posts[i].comments[j].date %> </em>
-                            <a class="btn" href="/post/<%= posts[i].id %>">
-                                Related Post
-                            </a>
-                       </li>
-                    <% }} %>
-                </ul>
         </div>
 
 
